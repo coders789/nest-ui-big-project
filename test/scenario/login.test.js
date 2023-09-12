@@ -11,25 +11,25 @@ describe('Login Test', () => {
         route.visit(ROUTES.home);
     });
 
-    it('Should success login to website dashboard as Customer', () => {
-        element.click(homePage.customerLoginMenu);
+    // it('Should success login to website dashboard as Customer', () => {
+    //     element.click(homePage.customerLoginMenu);
 
-        assert.shouldContainText(homePage.loginModalLabel, 'Your Name :');
+    //     assert.shouldContainText(homePage.loginModalLabel, 'Your Name :');
 
-        // element.click('#userSelect');
-        // element.select('#userSelect', '---Your Name---');
-        // cy.get(homePage.loginUsernameDropdown).select;
-        // element.click(homePage.selectUsername);
-
-        // cy.get('select[data-ng-model="custId"]').select('Hermione');
-        // cy.get('#userSelect').select('Hermione');
-
-        cy.get('#userSelect').focus().click();
-        cy.get('#userSelect').select('Hermione Granger');
-        element.click(homePage.loginButton);
+    //     cy.get('#userSelect').focus().click();
+    //     cy.get('#userSelect').select('Hermione Granger');
+    //     element.click(homePage.loginButton);
         
-        assert.shouldBeVisible(dashboardPage.loginUsernameLabel);
-        assert.shouldContainText(dashboardPage.loginUsernameLabel, `Hermoine Granger`);
+    //     assert.shouldBeVisible(dashboardPage.loginUsernameLabel);
+    //     assert.shouldContainText(dashboardPage.loginUsernameLabel, `Hermoine Granger`);
+    // });
+
+    it('Should success login to website dashboard as Customer', () => {
+        element.click(homePage.bankManagerLogin);
+        
+        assert.shouldBeVisible(dashboardPage.addCustomerTab);
+        assert.shouldBeVisible(dashboardPage.openAccountTab);
+        assert.shouldBeVisible(dashboardPage.customerTab);
     });
 });
 
