@@ -24,7 +24,7 @@ describe('Login Test', () => {
     //     assert.shouldContainText(dashboardPage.loginUsernameLabel, `Hermoine Granger`);
     // });
 
-    it('Should success login to website dashboard as Customer', () => {
+    it('Should success login to website dashboard as Bank Manager', () => {
         element.click(homePage.bankManagerLogin);
         
         assert.shouldBeVisible(dashboardPage.addCustomerTab);
@@ -32,4 +32,3 @@ describe('Login Test', () => {
         assert.shouldBeVisible(dashboardPage.customerTab);
     });
 });
-
