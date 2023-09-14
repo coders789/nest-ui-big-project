@@ -7,28 +7,35 @@ import * as assert from '@helper/assert';
 import { ROUTES } from '@test/consts/routes';
 
 describe('Login Test', () => {
-    before(() => {
+    beforeEach(() => {
         route.visit(ROUTES.home);
     });
 
-    // it('Should success login to website dashboard as Customer', () => {
-    //     element.click(homePage.customerLoginMenu);
+    it('Should success login to website dashboard as Customer', () => {
+        element.click(homePage.customerLoginMenu);
 
-    //     assert.shouldContainText(homePage.loginModalLabel, 'Your Name :');
+        assert.shouldContainText(homePage.loginModalLabel, 'Your Name :');
 
-    //     cy.get('#userSelect').focus().click();
-    //     cy.get('#userSelect').select('Hermione Granger');
-    //     element.click(homePage.loginButton);
-        
-    //     assert.shouldBeVisible(dashboardPage.loginUsernameLabel);
-    //     assert.shouldContainText(dashboardPage.loginUsernameLabel, `Hermoine Granger`);
-    // });
+        cy.get('#userSelect').select('Hermoine Granger');
+        element.click(homePage.loginButton);
+
+        assert.shouldBeVisible(dashboardPage.loginUsernameLabel);
+        assert.shouldContainText(dashboardPage.loginUsernameLabel, `Hermoine Granger`);
+    });
+
+    it("Verify Button Login Not Show When Not Select One Of Account as Customer", () => {
+        element.click(homePage.customerLoginMenu);
+
+        assert.shouldContainText(homePage.loginModalLabel, 'Your Name :');
+        assert.shouldHaveClass(homePage.loginButton, "ng-hide");
+    })
 
     it('Should success login to website dashboard as Bank Manager', () => {
         element.click(homePage.bankManagerLogin);
-        
+
         assert.shouldBeVisible(dashboardPage.addCustomerTab);
         assert.shouldBeVisible(dashboardPage.openAccountTab);
         assert.shouldBeVisible(dashboardPage.customerTab);
     });
 });
+
