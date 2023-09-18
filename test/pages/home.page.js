@@ -5,3 +5,4 @@ export const loginUsernameDropdown = '#userSelect'
 export const selectUsername = '.ng-binding:contains("Hermoine Granger")'
 export const loginButton = '.btn-default:contains("Login")'
 export const bankManagerLogin = '.btn-primary:contains("Bank Manager Login")'
+export const logoutButton = "button.btn.logout"
