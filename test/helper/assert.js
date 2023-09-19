@@ -17,3 +17,7 @@ export function shouldHaveClass(selector, value) {
 export function shouldHaveAttributeWithValue(selector, nameAttribute, value) {
     cy.get(selector).should("have.attr", nameAttribute, value)
 }
+
+export function shouldHaveLength(selector, length) {
+    cy.get(selector).should("have.length", length)
+}
