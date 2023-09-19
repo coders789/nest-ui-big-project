@@ -13,3 +13,7 @@ export function shouldContainText(selector, value) {
 export function shouldHaveClass(selector, value) {
     cy.get(selector).should('have.class', value)
 }
+
+export function shouldHaveAttributeWithValue(selector, nameAttribute, value) {
+    cy.get(selector).should("have.attr", nameAttribute, value)
+}
