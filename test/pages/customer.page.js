@@ -1,0 +1,1 @@
+export const searchCustomerField = '[placeholder="Search Customer"]'
