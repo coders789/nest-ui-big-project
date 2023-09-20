@@ -19,28 +19,28 @@ describe('Landing on Add Customer Test', () => {
 });
 
 describe('Add Customer Test', () => {
-    before(() => {
+    beforeEach(() => {
         cy.loginAsBankManager();
         element.click(dashboardPage.addCustomerTab)
     });
     it('Should success add new customer with valid input', () => {
         element.click(dashboardPage.addCustomerTab);
-        element.fillField(addCustomerPage.firstNameInput,data.firstName)
-        element.fillField(addCustomerPage.lastNameInput,data.lastName)
-        element.fillField(addCustomerPage.postCodeInput,data.postCode)
+        element.fillField(addCustomerPage.firstNameInput, data.firstName)
+        element.fillField(addCustomerPage.lastNameInput, data.lastName)
+        element.fillField(addCustomerPage.postCodeInput, data.postCode)
 
         element.click(addCustomerPage.submitButton);
 
-        cy.on('window:alert',(message) => {
-        expect(message).to.equal('Customer added successfully with customer id :6');
+        cy.on('window:alert', (message) => {
+            expect(message).to.equal('Customer added successfully with customer id :6');
         });
+    })
 
     it('Should success see error message when submit blank form', () => {
         element.click(addCustomerPage.submitButton);
-    
-        cy.on('window:alert',(message) => {
-        expect(message).to.equal('Please fill out this field');
-            });
+
+        cy.on('window:alert', (message) => {
+            expect(message).to.equal('Please fill out this field');
         });
     });
 });
