@@ -1,29 +1,46 @@
 import * as addCustomerPage from '@test/pages/addCustomer.page';
 import * as dashboardPage from '@test/pages/dashboard.page';
+import * as openAccountPage from '@test/pages/openAccount.page';
 import * as assert from '@helper/assert';
 import * as element from '@helper/element';
+import * as data from '@test/data/user.data';
 
-describe('Add Customer Test', () => {
+describe('Landing on Add Customer Test', () => {
     before(() => {
         cy.loginAsBankManager();
-    });
-
-    it('Should success landing on Add Customer page', () => {
         element.click(dashboardPage.addCustomerTab);
-
+    });
+    it('Should success landing on Add Customer page', () => {
         assert.shouldBeVisible(addCustomerPage.firstNameInput);
         assert.shouldBeVisible(addCustomerPage.lastNameInput);
         assert.shouldBeVisible(addCustomerPage.postCodeInput);
         assert.shouldBeVisible(addCustomerPage.submitButton);
     });
+});
 
-    //masih failed ini
-    // it('Should success add new customer with valid input', () => {
+describe('Add Customer Test', () => {
+    before(() => {
+        cy.loginAsBankManager();
+        element.click(dashboardPage.addCustomerTab)
+    });
+    it('Should success add new customer with valid input', () => {
+        element.click(dashboardPage.addCustomerTab);
+        element.fillField(addCustomerPage.firstNameInput,data.firstName)
+        element.fillField(addCustomerPage.lastNameInput,data.lastName)
+        element.fillField(addCustomerPage.postCodeInput,data.postCode)
 
-        // element.fillField(addCustomerPage.firstNameInput,'hohoho')
-        // element.fillField(addCustomerPage.lastNameInput,'xixixi')
-        // element.fillField(addCustomerPage.postCodeInput,'wkwkwk')
+        element.click(addCustomerPage.submitButton);
 
-        // element.click(addCustomerPage.submitButton);
-    // });
+        cy.on('window:alert',(message) => {
+        expect(message).to.equal('Customer added successfully with customer id :6');
+        });
+
+    it('Should success see error message when submit blank form', () => {
+        element.click(addCustomerPage.submitButton);
+    
+        cy.on('window:alert',(message) => {
+        expect(message).to.equal('Please fill out this field');
+            });
+        });
+    });
 });
