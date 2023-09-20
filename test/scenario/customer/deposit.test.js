@@ -34,8 +34,12 @@ describe("Deposit Test", () => {
         element.click(customerAccount.buttonDepositMenu);
         element.fillField(customerAccount.inputDepositWithDrawl, 1)
         element.click(customerAccount.buttonSubmitDepositWithDrawl)
+        assert.shouldContainText(customerAccount.accountBalance, 1)
+
         assert.shouldContainText(customerAccount.messageSubmitDepositWithDrawl, "Deposit Successful")
+        cy.wait(1000)
         element.click(customerAccount.buttonTransactionsMenu)
         assert.shouldHaveLength("tbody tr", 1)
+        assert.shouldContainText("tbody tr td:nth-child(2)", 1)
     })
 })

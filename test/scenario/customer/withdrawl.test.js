@@ -37,11 +37,9 @@ describe("Deposit Test", () => {
         })
 
         it("should fail when ammount withdrawl more than balance and balance not decreased", () => {
-            // 2 Langkah pancingan, karena jika diautomate dari menu deposit ke menu withdrawl tidak berubah componentnya jadi harus ke transaction dulu
-            element.click(customerAccount.buttonTransactionsMenu)
-            element.click(transaction.backButton)
-
             element.click(customerAccount.buttonWithdrawlMenu);
+            cy.wait(1000)
+            
             cy.get(customerAccount.inputDepositWithDrawl).type(10);
             element.click(customerAccount.buttonSubmitDepositWithDrawl)
             assert.shouldContainText(customerAccount.messageSubmitDepositWithDrawl, "Transaction Failed. You can not withdraw amount more than the balance.")
@@ -49,11 +47,9 @@ describe("Deposit Test", () => {
         })
 
         it("should success when ammount withdrawl less or same than balance", () => {
-            // 2 Langkah pancingan, karena jika diautomate dari menu deposit ke menu withdrawl tidak berubah componentnya jadi harus ke transaction dulu
-            element.click(customerAccount.buttonTransactionsMenu)
-            element.click(transaction.backButton)
-
             element.click(customerAccount.buttonWithdrawlMenu);
+            cy.wait(1000)
+
             element.fillField(customerAccount.inputDepositWithDrawl, 1)
             element.click(customerAccount.buttonSubmitDepositWithDrawl)
             assert.shouldContainText(customerAccount.messageSubmitDepositWithDrawl, "Transaction successful")
