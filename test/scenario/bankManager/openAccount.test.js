@@ -1,9 +1,7 @@
-import * as addCustomerPage from '@test/pages/addCustomer.page';
 import * as dashboardPage from '@test/pages/dashboard.page';
 import * as openAccountPage from '@test/pages/openAccount.page';
 import * as assert from '@helper/assert';
 import * as element from '@helper/element';
-import * as data from '@test/data/user.data';
 
 describe('Open account test', () => {
     beforeEach(() => {
